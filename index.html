@@ -81,6 +81,10 @@
       });
     });
 
+    socket.on('logStatus', data => {
+      $('#messages').append($('<li>').text(data.name + ' has logged on'))
+    })
+
       document.getElementById('m').addEventListener('keyup', (user) => {
         socket.emit('sender', {
           name: "bob ross"
@@ -88,12 +92,12 @@
       })
 
       socket.on('sender', function(data) {
-        console.log(data)
         $('#typing').html(data.name + " is typing");
         setTimeout(function () {
           $("#typing").html('');
         }, 1000);
       })
+
   </script>
   
 </body>
